@@ -1,0 +1,43 @@
+USE_CAMERA_STUB := true
+
+# inherit from the proprietary version
+-include vendor/bluebo/l300/BoardConfigVendor.mk
+
+TARGET_ARCH := arm
+TARGET_NO_BOOTLOADER := true
+TARGET_BOARD_PLATFORM := mt6589t
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_BOOTLOADER_BOARD_NAME := l300
+
+BOARD_KERNEL_CMDLINE := 
+BOARD_KERNEL_BASE := 0x10000000
+BOARD_KERNEL_PAGESIZE := 2048
+
+# fix this up by examining /proc/mtd on a running device
+BOARD_BOOTIMAGE_PARTITION_SIZE := 10291456
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10291456
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 681574400
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1073741824
+BOARD_FLASH_BLOCK_SIZE := 131072
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# fix this up by examining /proc/mtd on a running device
+# Recovery
+TARGET_PREBUILT_KERNEL := device/bluebo/l300/kernel
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_FSTAB := device/bluebo/l300/recovery/recovery.fstab
+TARGET_RECOVERY_INITRC := device/bluebo/l300/recovery/recovery.rc
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/bluebo/l300/recovery/recovery_keys.c
+CWM_EMMC_BOOT_DEVICE_NAME := /dev/bootimg
+CWM_EMMC_BOOT_DEVICE_SIZE := 0x00600000
+CWM_EMMC_RECOVERY_DEVICE_NAME := /dev/recovery
+CWM_EMMC_RECOVERY_DEVICE_SIZE := 0x00600000
+CWM_EMMC_UBOOT_DEVICE_NAME := /dev/uboot
+CWM_EMMC_UBOOT_DEVICE_SIZE := 0x00060000
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"font_40x40.h\"
+TARGET_RECOVERY_PIXEL_FORMAT := \"RGBX_8888\"
+
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/gadget/lun%d/file
